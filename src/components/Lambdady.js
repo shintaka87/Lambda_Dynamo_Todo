@@ -9,7 +9,7 @@ const Lambdady = () => {
     const [id, setId] = useState(1);
 
     useEffect(() =>{
-        axios.get(process.env.REACT_APP_API_GET , {
+        axios.get(process.env.REACT_APP_URL , {
             headers: {'Content-Type':'application/json'} })
             .then(res => {setTasks(res.data.Items);
             
