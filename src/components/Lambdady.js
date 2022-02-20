@@ -2,14 +2,14 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 const Lambdady = () => {
-
+    
     const [tasks, setTasks] = useState([]);
     const [selectedTask, setSelectedTask] = useState([]);
     const [editedTask, setEditedTask] = useState({id: '', title: ''});
     const [id, setId] = useState(1);
 
     useEffect(() =>{
-        axios.get('https://uy9tl4mut7.execute-api.ap-northeast-1.amazonaws.com/Todo/task' , {
+        axios.get(process.env.REACT_APP_API_GET , {
             headers: {'Content-Type':'application/json'} })
             .then(res => {setTasks(res.data.Items);
             
@@ -18,8 +18,9 @@ const Lambdady = () => {
 
    
     const deleteTask = (id) => {
+        // const delete_url = process.env.REACT_APP_API + `/${id}`
         
-        axios.delete(`https://uy9tl4mut7.execute-api.ap-northeast-1.amazonaws.com/Todo/task/${id}`,  {
+        axios.delete(process.env.REACT_APP_URL + `/${id}`,  {
             headers: {
                 'Content-Type':'application/json',
             }})
@@ -35,7 +36,7 @@ const Lambdady = () => {
         const data = {
             title: task.title,
         };
-        axios.post(` https://uy9tl4mut7.execute-api.ap-northeast-1.amazonaws.com/Todo/task`, data,{
+        axios.post(process.env.REACT_APP_URL, data,{
             headers: {
                 'Content-Type':'application/json',
             }})
@@ -48,7 +49,7 @@ const Lambdady = () => {
         const data = {
             title: task.title,
         };
-        axios.put(` https://uy9tl4mut7.execute-api.ap-northeast-1.amazonaws.com/Todo/task/${task.id}`,data,{
+        axios.put(process.env.REACT_APP_URL + `/${id}`,data,{
             headers: {
                 'Content-Type':'application/json',
             }})
