@@ -18,7 +18,6 @@ const Lambdady = () => {
 
    
     const deleteTask = (id) => {
-        // const delete_url = process.env.REACT_APP_API + `/${id}`
         
         axios.delete(process.env.REACT_APP_URL + `/${id}`,  {
             headers: {
